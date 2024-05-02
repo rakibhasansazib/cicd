@@ -8,7 +8,7 @@ node {
 
     stage('Build Docker image'){
 
-        app = docker.build("192.168.50.56:9091/image-argocd-dev/devops:${env.BUILD_NUMBER}")
+        app = docker.build("192.168.50.56:9091/argocd-dev/devops:${env.BUILD_NUMBER}")
 
     }
 
@@ -22,7 +22,7 @@ node {
 
     stage('Push image to Nexus'){
 
-        sh 'docker login -u admin -p admin http://192.168.50.56:9091/repository/image-argocd-dev/'
+        sh 'docker login -u admin -p admin http://192.168.50.56:9091/repository/argocd-dev/'
         app.push("${env.BUILD_NUMBER}")
 
     }
